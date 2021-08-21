@@ -1,0 +1,26 @@
+* {
+    font-family: sans-serif;
+    font-size: 1.3rem;
+    box-sizing: border-box;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+}
+.question {
+    width: 33%;
+    border: 1px solid lightgrey;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+div#actions {
+    width: 99%;
+    text-align: center;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+}
+.hidden-response {
+    visibility: hidden;
+}
