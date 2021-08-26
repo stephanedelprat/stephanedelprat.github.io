@@ -12,6 +12,16 @@ init = function() {
         let binary = number.toString(2);
         question.innerHTML = number + '<br><span class="response hidden-response">Réponse: ' + binary + '</span>';
     });
+    Array.prototype.filter.call(document.querySelectorAll('body.base16-10 div.question'), function (question) {
+        let number = random(16, 255);
+        let hexa = number.toString(16).toUpperCase();
+        question.innerHTML = hexa + '<br><span class="response hidden-response">Réponse: ' + number + '</span>';
+    });
+    Array.prototype.filter.call(document.querySelectorAll('body.base10-16 div.question'), function (question) {
+        let number = random(16, 255);
+        let hexa = number.toString(16).toUpperCase();
+        question.innerHTML = number + '<br><span class="response hidden-response">Réponse: ' + hexa + '</span>';
+    });
     Array.prototype.filter.call(document.querySelectorAll('body.base2-add div.question'), function (question) {
         let number1, number2;
         do {
@@ -21,6 +31,13 @@ init = function() {
         let binary1 = number1.toString(2);
         let binary2 = number2.toString(2);
         question.innerHTML = binary1 + ' + ' + binary2 + '<br><span class="response hidden-response">Réponse: ' + (number1 + number2).toString(2) + '</span>';
+    });
+    Array.prototype.filter.call(document.querySelectorAll('body.base2-sub div.question'), function (question) {
+        let number1 = random(48, 245);
+        let number2 = random(10, number1);
+        let binary1 = number1.toString(2);
+        let binary2 = number2.toString(2);
+        question.innerHTML = binary1 + ' - ' + binary2 + '<br><span class="response hidden-response">Réponse: ' + (number1 - number2).toString(2) + '</span>';
     });
 }
 init();
