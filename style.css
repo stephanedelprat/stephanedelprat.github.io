@@ -3,6 +3,9 @@
     font-size: 1.3rem;
     box-sizing: border-box;
 }
+sub {
+    font-size: 1rem;
+}
 .container{
     display: flex;
     flex-direction: row;
