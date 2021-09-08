@@ -35,7 +35,7 @@ init = function() {
         question.innerHTML = number + ' =<br><span class="response hidden-response">' + binary + '</span>';
     });
     Array.prototype.filter.call(document.querySelectorAll('body.base16-10 div.question'), function (question) {
-        let number = random(-128, -10);
+        let number = random(16, 255);
         let hexa = hexaStr(number);
         question.innerHTML = hexa + ' =<br><span class="response hidden-response">' + decimalStr(number) + '</span>';
     });
