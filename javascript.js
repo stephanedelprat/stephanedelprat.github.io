@@ -70,11 +70,25 @@ init = function() {
         let binary2 = binaryStr(number2);
         question.innerHTML = binary1 + ' - ' + binary2 + ' =<br><span class="response hidden-response">' + binaryStr(number1 - number2) + '</span>';
     });
+    Array.prototype.filter.call(document.querySelectorAll('body.how-many-bits div.question'), function (question) {
+        let number1 = random(2, 8);
+        let number2 = random(2**(number1-1), 2**number1-1);
+        question.innerHTML = 'Le nombre ' + number2 + ' ?<br><span class="response hidden-response">' + number1 + ' bits</span>';
+    });
+    Array.prototype.filter.call(document.querySelectorAll('body.bigger-int div.question'), function (question) {
+        let number1 = random(4, 16);
+        let answer = '2<sup>'+number1+'</sup> - 1 = '+(2**number1-1);
+        question.innerHTML = 'Sur ' + number1 + ' bits ?<br><span class="response hidden-response">' + answer + ' </span>';
+    });
+    Array.prototype.filter.call(document.querySelectorAll('body.bigger-smaller-int div.question'), function (question) {
+        let number1 = random(4, 16);
+        let answer = '-2<sup>'+(number1-1)+'</sup> = '+(2**(number1-1))+' à 2<sup>'+(number1-1)+'</sup> - 1 = '+(2**(number1-1)-1);
+        question.innerHTML = 'Sur ' + number1 + ' bits ?<br><span class="response hidden-response">' + answer + ' </span>';
+    });
 }
 init();
 document.getElementById('show').addEventListener("click", function() {
     Array.prototype.filter.call(document.getElementsByClassName('response'), function(question) {
-        console.log('a');
         question.classList.remove('hidden-response');
     });
 });
