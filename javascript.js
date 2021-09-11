@@ -33,6 +33,7 @@ init = function() {
         let number = random(-128, -10);
         let binary = complement2Str(number);
         question.innerHTML = number + ' =<br><span class="response hidden-response">' + binary + '</span>';
+        question.innerHTML = number + ' =<br><span class="response hidden-response">' + binary + '</span>';
     });
     Array.prototype.filter.call(document.querySelectorAll('body.base16-10 div.question'), function (question) {
         let number = random(16, 255);
@@ -63,6 +64,13 @@ init = function() {
         let binary2 = binaryStr(number2);
         question.innerHTML = binary1 + ' + ' + binary2 + ' =<br><span class="response hidden-response">' + binaryStr(number1 + number2) + '</span>';
     });
+    Array.prototype.filter.call(document.querySelectorAll('body.base2-mult div.question'), function (question) {
+        let number1 = random(8, 15);
+        let number2 = random(2, 7);
+        let binary1 = binaryStr(number1);
+        let binary2 = binaryStr(number2);
+        question.innerHTML = binary1 + ' * ' + binary2 + ' =<br><span class="response hidden-response">' + binaryStr(number1 * number2) + '</span>';
+    });
     Array.prototype.filter.call(document.querySelectorAll('body.base2-sub div.question'), function (question) {
         let number1 = random(48, 245);
         let number2 = random(10, number1);
@@ -84,6 +92,46 @@ init = function() {
         let number1 = random(4, 16);
         let answer = '-2<sup>'+(number1-1)+'</sup> = '+(2**(number1-1))+' à 2<sup>'+(number1-1)+'</sup> - 1 = '+(2**(number1-1)-1);
         question.innerHTML = 'Sur ' + number1 + ' bits ?<br><span class="response hidden-response">' + answer + ' </span>';
+    });
+    Array.prototype.filter.call(document.querySelectorAll('body.range div.question'), function (question) {
+        let rand = random(1, 8);
+        let start = random(-2, 2);
+        let end = random(4, 8);
+        let step = random(1, 3);
+        let range;
+        if (rand === 1) {
+            range = 'range('+end+')';
+            start = 0;
+            step = 1;
+        } else if (rand === 2) {
+            range = 'range(-'+end+')';
+            end = -end;
+            start = 0;
+            step = 1;
+        } else if (rand === 3) {
+            range = 'range('+start+', '+end+')';
+            step = 1;
+        } else if (rand === 4) {
+            [start, end] = [end, start];
+            step = -1;
+            range = 'range('+start+', '+end+', '+step+')';
+        } else {
+            range = 'range('+start+', '+end+', '+step+')';
+        }
+        let answer = '';
+        let count = 0;
+        if (step > 0) {
+            for (let i = start; i < end; i += step) {
+                answer += i + '<br>';
+                count++
+            }
+        } else {
+            for (let i = start; i > end; i += step) {
+                answer += i + '<br>';
+                count++
+            }
+        }
+        question.innerHTML = 'for i in '+range+': print(i) <br><span class="response hidden-response">' + answer + count+' tours</span>';
     });
 }
 init();
