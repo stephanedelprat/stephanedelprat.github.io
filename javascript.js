@@ -11,7 +11,7 @@ decimalStr = function(number) {
     return '('+number+')<sub>10</sub>';
 }
 complement2Str = function(number) {
-    return binaryStr(256+number);
+    return (256+number).toString(2).replace(/\B(?=(\d{4})+(?!\d))/g, ' ');
 }
 init = function() {
     Array.prototype.filter.call(document.querySelectorAll('body.base2-10 div.question'), function (question) {
