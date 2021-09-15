@@ -25,12 +25,12 @@ init = function() {
         question.innerHTML = decimalStr(number) + ' =<br><span class="response hidden-response">' + binary + '</span>';
     });
     Array.prototype.filter.call(document.querySelectorAll('body.base2-10-2-complement div.question'), function (question) {
-        let number = random(-128, -10);
+        let number = random(-127, -10);
         let binary = complement2Str(number);
         question.innerHTML = binary + ' =<br><span class="response hidden-response">' + number + '</span>';
     });
     Array.prototype.filter.call(document.querySelectorAll('body.base10-2-2-complement div.question'), function (question) {
-        let number = random(-128, -10);
+        let number = random(-127, -10);
         let binary = complement2Str(number);
         question.innerHTML = number + ' =<br><span class="response hidden-response">' + binary + '</span>';
         question.innerHTML = number + ' =<br><span class="response hidden-response">' + binary + '</span>';
