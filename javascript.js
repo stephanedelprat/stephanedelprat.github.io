@@ -7,6 +7,9 @@ binaryStr = function(number) {
 hexaStr = function(number) {
     return '('+number.toString(16).toUpperCase()+')<sub>16</sub>';
 }
+octaStr = function(number) {
+    return '('+number.toString(8).toUpperCase()+')<sub>8</sub>';
+}
 decimalStr = function(number) {
     return '('+number+')<sub>10</sub>';
 }
@@ -34,6 +37,18 @@ init = function() {
         let binary = complement2Str(number);
         question.innerHTML = number + ' =<br><span class="response hidden-response">' + binary + '</span>';
         question.innerHTML = number + ' =<br><span class="response hidden-response">' + binary + '</span>';
+    });
+    Array.prototype.filter.call(document.querySelectorAll('body.base8-2 div.question'), function (question) {
+        let number = random(8, 2**9 - 1);
+        let binary = binaryStr(number);
+        let octa = octaStr(number);
+        question.innerHTML = octa + ' =<br><span class="response hidden-response">' + binary + '</span>';
+    });
+    Array.prototype.filter.call(document.querySelectorAll('body.base2-8 div.question'), function (question) {
+        let number = random(8, 2**9 - 1);
+        let binary = binaryStr(number);
+        let octa = octaStr(number);
+        question.innerHTML = binary + ' =<br><span class="response hidden-response">' + octa + '</span>';
     });
     Array.prototype.filter.call(document.querySelectorAll('body.base16-10 div.question'), function (question) {
         let number = random(16, 255);
