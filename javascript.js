@@ -27,6 +27,16 @@ init = function() {
         let binary = binaryStr(number);
         question.innerHTML = decimalStr(number) + ' =<br><span class="response hidden-response">' + binary + '</span>';
     });
+    Array.prototype.filter.call(document.querySelectorAll('body.base2-10f div.question'), function (question) {
+        let number = random(48, 255);
+        let binary = binaryStr(number);
+        question.innerHTML = binary.replace(' ', '.') + ' =<br><span class="response hidden-response">' + decimalStr(number/16) + '</span>';
+    });
+    Array.prototype.filter.call(document.querySelectorAll('body.base10-2f div.question'), function (question) {
+        let number = random(48, 255);
+        let binary = binaryStr(number);
+        question.innerHTML = decimalStr(number/16) + ' =<br><span class="response hidden-response">' + binary.replace(' ', '.') + '</span>';
+    });
     Array.prototype.filter.call(document.querySelectorAll('body.base2-10-2-complement div.question'), function (question) {
         let number = random(-127, -10);
         let binary = complement2Str(number);
