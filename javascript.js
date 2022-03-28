@@ -4,6 +4,29 @@ random = function(start, end) {
 binaryStr = function(number) {
     return '('+number.toString(2).replace(/\B(?=(\d{4})+(?!\d))/g, ' ')+')<sub>2</sub>';
 }
+chmodLettersStr = function(number) {
+    let masque = 'rwxrwxrwx';
+    let tmp = number.toString(2);
+    tmp = '0'.repeat(9 - tmp.length) + tmp;
+    let retour = '';
+    for (let i = 0; i < 9; i++) {
+        if(tmp[i] == 1) {
+            retour += masque[i];
+        }else {
+            retour += '-';
+        }
+    }
+    return retour;
+}
+chmodOctaStr = function(number) {
+    let tmp = number.toString(2);
+    tmp = '0'.repeat(10 - tmp.length) + tmp;
+    let retour = '';
+    retour += (tmp[1]*4)+(tmp[2]*2)+(tmp[3]*1);
+    retour += (tmp[4]*4)+(tmp[5]*2)+(tmp[6]*1);
+    retour += (tmp[7]*4)+(tmp[8]*2)+(tmp[9]*1);
+    return retour;
+}
 hexaStr = function(number) {
     return '('+number.toString(16).toUpperCase()+')<sub>16</sub>';
 }
@@ -117,6 +140,18 @@ init = function() {
         let number1 = random(4, 16);
         let answer = '-2<sup>'+(number1-1)+'</sup> = '+(2**(number1-1))+' à 2<sup>'+(number1-1)+'</sup> - 1 = '+(2**(number1-1)-1);
         question.innerHTML = 'Sur ' + number1 + ' bits ?<br><span class="response hidden-response">' + answer + ' </span>';
+    });
+    Array.prototype.filter.call(document.querySelectorAll('body.chmod2-8 div.question'), function (question) {
+        let number = random(0, 2**9 - 1);
+        let letters = chmodLettersStr(number);
+        let octa = chmodOctaStr(number);
+        question.innerHTML = letters + '<br><span class="response hidden-response">chmod ' + octa + ' nom_du_fichier</span>';
+    });
+    Array.prototype.filter.call(document.querySelectorAll('body.chmod8-2 div.question'), function (question) {
+        let number = random(0, 2**9 - 1);
+        let letters = chmodLettersStr(number);
+        let octa = chmodOctaStr(number);
+        question.innerHTML = 'chmod ' + octa + ' nom_du_fichier<br><span class="response hidden-response">' + letters + '</span>';
     });
     Array.prototype.filter.call(document.querySelectorAll('body.range div.question'), function (question) {
         let rand = random(1, 8);
